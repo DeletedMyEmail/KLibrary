@@ -1,4 +1,4 @@
-package datastructures.foreign.Graph;
+package klibrary.datastructures.foreign.abiturklassennrw.Graph;
 
 /**
  * <p>

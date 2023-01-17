@@ -1,6 +1,4 @@
-package datastructures.foreign.Graph;
-
-import datastructures.foreign.List;
+package klibrary.datastructures.foreign.abiturklassennrw.Graph;
 
 /**
  * <p>

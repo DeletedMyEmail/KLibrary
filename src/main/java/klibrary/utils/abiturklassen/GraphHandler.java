@@ -1,12 +1,12 @@
 package klibrary.utils.abiturklassen;
 
-import datastructures.foreign.Graph.Edge;
-import datastructures.foreign.Graph.Graph;
-import datastructures.foreign.Graph.Vertex;
-import datastructures.foreign.List;
+import klibrary.datastructures.foreign.abiturklassennrw.Graph.Edge;
+import klibrary.datastructures.foreign.abiturklassennrw.Graph.Graph;
+import klibrary.datastructures.foreign.abiturklassennrw.Graph.Vertex;
+import klibrary.datastructures.foreign.abiturklassennrw.Graph.List;
 
 /**
- * GraphHandler ist eine Klasse, welche das erstellen und durchsuchen der Abiturklasse {@link datastructures.foreign.Graph} erleichtert. <br>
+ * GraphHandler ist eine Klasse, welche das erstellen und durchsuchen der Abiturklasse {@link klibrary.datastructures.foreign.abiturklassennrw.Graph} erleichtert. <br>
  * Diese Klasse ist außerdem teil der KLibrary (https://github.com/KaitoKunTatsu/KLibrary)
  *
  * @version	v1.0.0 | last edit: 29.03.2022

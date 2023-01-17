@@ -1,4 +1,4 @@
-package datastructures.custom;
+package klibrary.datastructures.custom;
 
 import java.util.List;
 
