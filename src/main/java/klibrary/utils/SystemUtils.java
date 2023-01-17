@@ -1,4 +1,4 @@
-package KLibrary.utils;
+package klibrary.utils;
 
 import java.io.File;
 
@@ -7,7 +7,7 @@ import java.io.File;
  * <br>
  * Part of the <a href="https://github.com/KaitoKunTatsu/KLibrary">KLibrary</a>
  *
- * @version 1.2.0 | last edit: 28.10.2022
+ * @version 1.3.1 | last edit: 17.01.2023
  * @author Joshua Hartjes | KaitoKunTatsu#3656
  */
 public class SystemUtils {
@@ -51,7 +51,7 @@ public class SystemUtils {
      *
      * @return true if directory already exists or was successfully created; false if directory creation failed
      * */
-    public static boolean createDirIfNotExists(String lDirPath)
+    public static boolean createDirIfAbsent(String lDirPath)
     {
         File lFile = new File(lDirPath);
         if (!lFile.exists())

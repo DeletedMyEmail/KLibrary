@@ -1,4 +1,4 @@
-package KLibrary.utils;
+package klibrary.utils;
 
 import java.sql.*;
 

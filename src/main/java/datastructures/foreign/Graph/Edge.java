@@ -1,4 +1,4 @@
-package KLibrary.datastructures.foreign.Graph;
+package datastructures.foreign.Graph;
 
 /**
  * <p>

@@ -1,6 +1,6 @@
-package KLibrary.wrapper;
+package klibrary.net;
 
-import KLibrary.utils.EncryptionUtils;
+import klibrary.utils.EncryptionUtils;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;

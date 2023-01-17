@@ -1,6 +1,6 @@
-package KLibrary.wrapper;
+package klibrary.net;
 
-import KLibrary.utils.EncryptionUtils;
+import klibrary.utils.EncryptionUtils;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SecretKey;
@@ -19,7 +19,7 @@ import java.util.List;
  * @version 1.3.0 | last edit: 18.12.2022
  * @author Joshua Hartjes | KaitoKunTatsu#3656
  * */
-public abstract class ServerSocketWrapper {
+public abstract class AbstractServer {
 
     private final java.net.ServerSocket serverSocket;
     private final List<SocketWrapper> clients;
@@ -28,7 +28,7 @@ public abstract class ServerSocketWrapper {
 
     private boolean accepting;
 
-    public ServerSocketWrapper(int pPort, boolean pEncryptionRequired) throws IOException {
+    public AbstractServer(int pPort, boolean pEncryptionRequired) throws IOException {
         clients = new ArrayList<>();
         encryptionUtils = new EncryptionUtils();
         serverSocket = new java.net.ServerSocket(pPort);

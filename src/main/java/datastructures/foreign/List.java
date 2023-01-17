@@ -1,4 +1,4 @@
-package KLibrary.datastructures.foreign;
+package datastructures.foreign;
 
 /**
  * <p>
