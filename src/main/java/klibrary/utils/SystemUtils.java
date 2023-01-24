@@ -7,7 +7,7 @@ import java.io.File;
  * <br>
  * Part of the <a href="https://github.com/KaitoKunTatsu/KLibrary">KLibrary</a>
  *
- * @version 1.3.1 | last edit: 17.01.2023
+ * @version 1.3.2 | last edit: 24.01.2023
  * @author Joshua Hartjes | KaitoKunTatsu#3656
  */
 public class SystemUtils {
@@ -47,15 +47,40 @@ public class SystemUtils {
     }
 
     /**
-     * Creates a directory if it doesn't already exist.
+     * Creates a directory if it doesn't already exist. Parent directories are also created
      *
-     * @return true if directory already exists or was successfully created; false if directory creation failed
+     * @return true if directory already exists or was successfully created; <br> false if directory creation failed
      * */
     public static boolean createDirIfAbsent(String lDirPath)
     {
-        File lFile = new File(lDirPath);
-        if (!lFile.exists())
-            return lFile.mkdir();
+        File lDir = new File(lDirPath);
+        if (!lDir.exists()) {
+            int lLastDirEndIndex = lDirPath.lastIndexOf('/');
+            if (lLastDirEndIndex == -1) {
+                lLastDirEndIndex = lDirPath.lastIndexOf('\\');
+            }
+
+            if (!createDirIfAbsent(lDirPath.substring(0, lLastDirEndIndex))) {
+                return false;
+            }
+            return lDir.mkdir();
+        }
+        return true;
+    }
+
+    /**
+     * Creates a file if it doesn't already exist.
+     *
+     * @return true if directory already exists or was successfully created; <br> false if file creation failed
+     * */
+    public static boolean createFileIfAbsent(String pFielPath) {
+        try {
+            new File(pFielPath).createNewFile();
+        }
+        catch (Exception e) {
+            return false;
+        }
+
         return true;
     }
 
