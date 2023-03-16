@@ -61,7 +61,7 @@ public class SocketWrapper {
         this(new Socket(pIp, pPort), null);
     }
 
-    public void establishAES() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
+    public void establishEncryption() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
         // RSA
         byte[] lEncodedRSAKey = encryptionUtils.getPublicKey().getEncoded();
         writer.writeInt(lEncodedRSAKey.length);
@@ -78,7 +78,7 @@ public class SocketWrapper {
         writer.write(lEncryptedAESKey);
     }
 
-    public void writeAES(String pMessage) throws InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException {
+    private void sendEncrypted(String pMessage) throws InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException {
         if (AESKey == null) throw new InvalidKeyException();
 
         byte[] lEncrpytedMessage = EncryptionUtils.encryptAES(pMessage, AESKey);
@@ -87,23 +87,21 @@ public class SocketWrapper {
         writer.write(lConcatenated, 0, lConcatenated.length);
     }
 
-    public void writeUnencrypted(String pMessage) throws IOException {
-        writer.writeUTF(pMessage);
-    }
-
-    public boolean writeUnencrypted(byte[] pMessage)
-    {
-        try {
-            writer.write(pMessage);
-            return true;
+    public void sendMessage(String pMessage, boolean pEncrypted) throws IOException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+        if (pEncrypted) {
+            sendEncrypted(pMessage);
         }
-        catch(IOException ioEx) {return false;}
+        else {
+            writer.writeUTF(pMessage);
+        }
     }
 
-    public byte[] readAllBytes()
-    {
-        try
-        {
+    public void sendMessage(byte[] pMessage) throws IOException {
+        writer.write(pMessage);
+    }
+
+    public byte[] readAllBytes() {
+        try {
             int lSize = reader.readInt();
             if (lSize <= 0) return new byte[0];
 
@@ -119,7 +117,7 @@ public class SocketWrapper {
         return reader.readUTF();
     }
 
-    public String readAES() throws IOException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+    public String readEncrypted() throws IOException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
         if (AESKey == null) return null;
 
         int lSize = reader.readInt();

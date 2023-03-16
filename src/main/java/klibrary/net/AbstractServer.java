@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * Part of the <a href="https://github.com/KaitoKunTatsu/KLibrary">KLibrary</a>
  *
- * @version 1.3.1 | last edit: 17.01.2023
+ * @version 1.3.3 | last edit: 17.01.2023
  * @author Joshua Hartjes | KaitoKunTatsu#3656
  * */
 public abstract class AbstractServer {
@@ -62,7 +61,7 @@ public abstract class AbstractServer {
 
             byte[] lEncodedOwnKey = encryptionUtils.getPublicKey().getEncoded();
             pClient.getOutStream().writeInt(lEncodedOwnKey.length);
-            pClient.writeUnencrypted(lEncodedOwnKey);
+            pClient.sendMessage(lEncodedOwnKey);
 
             lInput = pClient.readAllBytes();
             SecretKey lSocketsAESKey = EncryptionUtils.decodeAESKey(encryptionUtils.decryptRSAToBytes(lInput));
@@ -94,9 +93,9 @@ public abstract class AbstractServer {
         {
             if (aesRequired && !establishAES(this.client)) {
                 try {
-                    this.client.writeUnencrypted("error:Encryption error occcured");
+                    this.client.sendMessage("error:Encryption error occcured", false);
                 }
-                catch (IOException ignored) {}
+                catch (IOException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException | InvalidKeyException ignored) {}
 
                 this.close();
                 onClientDisconnect(this.client);
@@ -110,7 +109,7 @@ public abstract class AbstractServer {
                 String lMessage;
                 try {
                     if (aesRequired)
-                        lMessage = this.client.readAES();
+                        lMessage = this.client.readEncrypted();
                     else
                         lMessage = this.client.getInStream().readUTF();
                 }
@@ -133,25 +132,12 @@ public abstract class AbstractServer {
     }
 
     public void broadcast(String pMessage) {
-        if (aesRequired) {
-            for (SocketWrapper wrapper : clients) {
-                try {
-                    wrapper.writeAES(pMessage);
-                }
-                catch (IOException | InvalidKeyException | InvalidAlgorithmParameterException |
-                       IllegalBlockSizeException | BadPaddingException ex) {
-                    onClientDisconnect(wrapper);
-                }
+        for (SocketWrapper wrapper : clients) {
+            try {
+                wrapper.sendMessage(pMessage, aesRequired);
             }
-        }
-        else {
-            for (SocketWrapper wrapper : clients) {
-                try {
-                    wrapper.writeUnencrypted(pMessage);
-                }
-                catch (IOException ioEx) {
-                    onClientDisconnect(wrapper);
-                }
+            catch (IOException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException ex) {
+                onClientDisconnect(wrapper);
             }
         }
     }
