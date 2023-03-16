@@ -21,7 +21,7 @@ import java.security.spec.InvalidKeySpecException;
  * <br>
  * Part of the <a href="https://github.com/KaitoKunTatsu/KLibrary">KLibrary</a>
  *
- * @version 1.3.0 | last edit: 18.12.2022
+ * @version 1.3.3 | last edit: 18.12.2022
  * @author Joshua Hartjes | KaitoKunTatsu#3656
  * */
 public class SocketWrapper {
