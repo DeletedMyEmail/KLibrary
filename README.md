@@ -21,29 +21,34 @@ This is just a small collection of classes that will help you deal with <br>
 
 Add the [JAR](out/artifacts/KLibrary_jar) to your project as shown [here](https://stackoverflow.com/questions/1051640/correct-way-to-add-external-jars-lib-jar-to-an-intellij-idea-project). That's it. Now you're able to import all classes.
 
-Last stable version: **1.3.2**
+Last stable version: **1.3.3**
 
 ### Server
 
 Create a new class that inherits from [AbstractServer](src/main/java/klibrary/net/AbstractServer.java) in order to implement its 
-abstract methods: 
+**abstract methods**: 
 
-- ```onClientConnect``` - Triggered when a client connects to the server and (if necessary) finished a key handshake for encryption 
-- ```onClientDisonnect``` - Triggered when the connection to a client is lost 
-- ```onMessage``` - Triggered when the server receives a message from a client
+- ```onClientConnect(SocketWrapper pClient)``` - Triggered when a client connects to the server and (if necessary) finished a key handshake for encryption 
+- ```onClientDisconnect(SocketWrapper pClient)``` - Triggered when the connection to a client is lost 
+- ```onMessage(SocketWrapper pClient, String pMessage)``` - Triggered when the server receives a message from a client
 
-It's constructor takes a port and boolean which enables encryption if true as paramters. 
+**Constructor** 
+- ```AbstractServer(int pPort, boolean pEncryptionRequired)``` - Takes the port to listen on and a boolean which requires encryption if true
 
 Call ```acceptSockets()``` to start listening for sockets.
 
 ### Client
 
-A [SocketWrapper](src/main/java/klibrary/net/SocketWrapper.java) provides methods for sending/receiving encrypted (and unencrypted) messages.
-You can connect it via one of the four constructors:
-- ```SocketWrapper(Socket, SecretKey)``` - Takes an already connected socket and secret key shared with the server to encrypt/decrypt
-- ```SocketWrapper(Socket)``` - Takes an already connected socket. You can only send unencrypted messages until you set a secret key (```setAESKey()```) or perform a key handshake with the server (```establishAES()```)
-- ```SocketWrapper(String, int, SecretKey)``` - Takes a server address, port, and secret key shared with the server to encrypt/decrypt
-- ```SocketWrapper(String, int)``` - Takes a server address and port. You can only send unencrypted messages until you set a secret key (```setAESKey()```) or perform a key handshake with the server (```establishAES()```)
+Create a new class that inherits from [AbstractClient](src/main/java/klibrary/net/AbstractClient.java) in order to implement its
+abstract methods:
+
+- ```onMessageReadError(Exception pException)``` - Triggered if an error occurs while reading a message from the server
+- ```onMessageReceived(String pMessage)``` - Triggered when a message sent by the server is received
+
+**Constructor**
+- ```AbstractClient(String pIp, int pPort, boolean pEnableEncryption)``` - Takes the ip and port of the server to connect to and a boolean which enables encryption if true
+
+Call ```listenForMessages()``` to start listening for message in another thread.
 
 ### SQLUtils
 
