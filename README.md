@@ -23,9 +23,9 @@ Add the [JAR](out/artifacts/KLibrary_jar) to your project as shown [here](https:
 
 Last stable version: **1.3.2**
 
-### ServerSocketWrapper
+### Server
 
-Create a new class that inherits from [ServerSocketWrapper](src/main/java/klibrary/net/ServerSocketWrapper.java) in order to implement its 
+Create a new class that inherits from [AbstractServer](src/main/java/klibrary/net/AbstractServer.java) in order to implement its 
 abstract methods: 
 
 - ```onClientConnect``` - Triggered when a client connects to the server and (if necessary) finished a key handshake for encryption 
@@ -36,7 +36,7 @@ It's constructor takes a port and boolean which enables encryption if true as pa
 
 Call ```acceptSockets()``` to start listening for sockets.
 
-### SocketWrapper
+### Client
 
 A [SocketWrapper](src/main/java/klibrary/net/SocketWrapper.java) provides methods for sending/receiving encrypted (and unencrypted) messages.
 You can connect it via one of the four constructors:
