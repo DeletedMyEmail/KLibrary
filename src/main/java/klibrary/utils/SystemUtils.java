@@ -3,12 +3,12 @@ package klibrary.utils;
 import java.io.File;
 
 /**
- * This class provides methods for OS dependent pathsa and directory creation
+ * This class provides methods for OS dependent paths and directory creation
  * <br>
  * Part of the <a href="https://github.com/KaitoKunTatsu/KLibrary">KLibrary</a>
  *
  * @version 1.3.2 | last edit: 24.01.2023
- * @author Joshua Hartjes | KaitoKunTatsu#3656
+ * @author Joshua Hartjes
  */
 public class SystemUtils {
 

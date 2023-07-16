@@ -15,7 +15,7 @@ import java.util.List;
  * Part of the <a href="https://github.com/KaitoKunTatsu/KLibrary">KLibrary</a>
  *
  * @version 1.3.3 | last edit: 17.01.2023
- * @author Joshua Hartjes | KaitoKunTatsu#3656
+ * @author Joshua Hartjes
  * */
 public abstract class AbstractServer {
 

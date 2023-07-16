@@ -22,7 +22,7 @@ import java.security.spec.InvalidKeySpecException;
  * Part of the <a href="https://github.com/KaitoKunTatsu/KLibrary">KLibrary</a>
  *
  * @version 1.3.3 | last edit: 18.12.2022
- * @author Joshua Hartjes | KaitoKunTatsu#3656
+ * @author Joshua Hartjes
  * */
 public class SocketWrapper {
 

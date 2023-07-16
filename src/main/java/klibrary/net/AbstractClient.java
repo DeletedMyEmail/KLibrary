@@ -11,7 +11,7 @@ import java.security.spec.InvalidKeySpecException;
  *
  *
  * @version 1.3.3 | last edit: 16.03.2023
- * @author Joshua Hartjes | KaitoKunTatsu#3656
+ * @author Joshua Hartjes
  * */
 public abstract class AbstractClient {
 

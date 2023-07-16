@@ -15,14 +15,14 @@ import java.util.Base64;
  * <br>
  * Part of the <a href="https://github.com/KaitoKunTatsu/KLibrary">KLibrary</a>
  *
- * @version	1.2.0 | last edit: 08.09.2022
- * @author Joshua Hartjes | KaitoKunTatsu#3656
+ * @version	1.3.3 | last edit: 08.09.2022
+ * @author Joshua Hartjes
  */
 public class EncryptionUtils {
 
     private static final String HASH_ALGORITHM = "PBKDF2WithHmacSHA512";
 
-    private static final char[] CHARACTERS = {'A','B','C','D','E','F','G','H','I','J','K','L','M' , 'N','O','P','Q','R','S','T','U','V','W','X','Y', 'Z'};
+    private static final char[] CHARACTERS = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 
     private static final int DEFAULT_RSA_KEY_SIZE = 1024;
 
